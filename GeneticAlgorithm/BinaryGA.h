@@ -9,7 +9,7 @@
 namespace ga {
 
 	//	Binary Genetic Algorithm class
-	class BinaryGeneticAlgorithm {
+	class BinaryGA {
 	public:
 
 		using RandomSeed = unsigned int;
@@ -32,10 +32,10 @@ namespace ga {
 		using Mutation = std::function<void(Individual&)>;
 		using FitnessFunction = std::function<Fitness(const Individual&)>;
 
-	private:
+	protected:
 		RandomSeed seed;			//	乱数シード値
 		std::mt19937 mt;			//	乱数発生器
-		BitIndex n_bits;			//	1個体のビット数
+		BitIndex bit_length;		//	1個体のビット長
 		Population population;		//	集団（個体の配列）
 		size_t i_gen = 0;			//	現在の世代
 
@@ -43,83 +43,30 @@ namespace ga {
 		Individual& createIndividual();
 
 	//	min 以上 max 以下の整数(ビット番号)を取得 
-		BitIndex randomBitIndex(BitIndex i_min, BitIndex i_max)
-		{
-			return std::uniform_int_distribution<BitIndex>(i_min, i_max)(mt);
-		}
+		BitIndex randomBitIndex(BitIndex i_min, BitIndex i_max);
 
 	//	全個体の全ビットをシャッフルする
-		void randomize(double probability_of_1 = 0.5)
-		{
-			//std::bernoulli_distribution d(probability_of_1);
-			//for(auto& idv : population) {
-			//	for(BitIndex i_bit = 0; i_bit < n_bits; ++i_bit){
-			//		idv[i_bit] = d(mt);
-			//	}
-			//}
-			for(auto& idv : population) idv.randomize();
-		}
+		void randomize(double probability_of_1 = 0.5);
 
 	//	一点交叉関数
-		void single_point_crossover(IndividualIndex p1, IndividualIndex p2)
-		{
-			BitIndex i_border = randomBitIndex(0, n_bits);
-			Individual& c1 = createIndividual();
-			Individual& c2 = createIndividual();
-
-			population[p1].copyBits(0, i_border, c1, 0).copyBits(i_border, n_bits, c2, i_border);
-			population[p2].copyBits(0, i_border, c2, 0).copyBits(i_border, n_bits, c1, i_border);
-
-		}
+		void single_point_crossover(IndividualIndex p1, IndividualIndex p2);
 
 	//	二点交叉関数
-		void double_point_crossover(IndividualIndex p1, IndividualIndex p2)
-		{
-			BitIndex i_beg = randomBitIndex(0, n_bits - 1);
-			BitIndex i_end = randomBitIndex(i_beg + 1, n_bits);
-			Individual& c1 = createIndividual();
-			Individual& c2 = createIndividual();
-
-			population[p1].copyBits(0, i_beg, c1, 0).copyBits(i_beg, i_end, c2, i_beg).copyBits(i_end, n_bits, c1, i_end);
-			population[p2].copyBits(0, i_beg, c2, 0).copyBits(i_beg, i_end, c1, i_beg).copyBits(i_end, n_bits, c2, i_end);
-		}
+		void double_point_crossover(IndividualIndex p1, IndividualIndex p2);
 
 	//	一様交叉関数
-		void uniform_crossover(IndividualIndex i1, IndividualIndex i2)
-		{
-			const Individual& p1 = population[i1];
-			const Individual& p2 = population[i2];
-			Individual& c1 = createIndividual();
-			Individual& c2 = createIndividual();
+		void uniform_crossover(IndividualIndex i1, IndividualIndex i2);
 
-			std::bernoulli_distribution d;
-			for(BitIndex i_bit = 0; i_bit < n_bits; ++i_bit){
-				if(d(mt)) {
-					c1[i_bit] = p1[i_bit];
-					c2[i_bit] = p2[i_bit];
-				}else{
-					c2[i_bit] = p1[i_bit];
-					c1[i_bit] = p2[i_bit];
-				}
-			}
-		}
+	//	ブロック交叉関数
 
 	//	突然変異関数
-		void random_index_mutation(Individual& idv)
-		{
-			BitIndex i_target = randomBitIndex(0, n_bits - 1);
-			idv[i_target].flip();
-		}
+		void random_index_mutation(Individual& idv);
 
 	//	ルーレット選択関数
-		void proportionate_selection()
-		{
-
-		}
+		void proportionate_selection();
 
 	public:
-		explicit BinaryGeneticAlgorithm(BitIndex n_bits, RandomSeed seed)
-			: seed(seed), mt(seed), n_bits(n_bits) {}
+		explicit BinaryGA(BitIndex, RandomSeed);
 
 	//	初期個体の生成
 		virtual void initialize() = 0;
