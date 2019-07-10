@@ -134,6 +134,11 @@
     <ClInclude Include="Bitstring.h" />
     <ClInclude Include="Point.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Base\Base.vcxproj">
+      <Project>{7d4d8989-a239-4279-9e26-a58b30fbf708}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

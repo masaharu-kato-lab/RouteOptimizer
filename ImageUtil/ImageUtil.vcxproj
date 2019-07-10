@@ -28,6 +28,11 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="Position.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Base\Base.vcxproj">
+      <Project>{7d4d8989-a239-4279-9e26-a58b30fbf708}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{BBF60FA1-3E16-47C8-9CCA-C9894CCB34FB}</ProjectGuid>

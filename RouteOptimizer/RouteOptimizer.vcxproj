@@ -127,6 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Base\Base.vcxproj">
+      <Project>{7d4d8989-a239-4279-9e26-a58b30fbf708}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\FireflyAlgorithm\FireflyAlgorithm.vcxproj">
+      <Project>{49f60eb9-e37b-4d4b-98fb-6ed69fb36686}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\GeneticAlgorithm\GeneticAlgorithm.vcxproj">
       <Project>{eb6060d8-b940-4f27-bb40-638f9fcc632e}</Project>
     </ProjectReference>

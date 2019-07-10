@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GeneticAlgorithm", "Genetic
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FireflyAlgorithm", "FireflyAlgorithm\FireflyAlgorithm.vcxproj", "{49F60EB9-E37B-4D4B-98FB-6ED69FB36686}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Base", "Base\Base.vcxproj", "{7D4D8989-A239-4279-9E26-A58B30FBF708}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,6 +53,14 @@ Global
 		{49F60EB9-E37B-4D4B-98FB-6ED69FB36686}.Release|x64.Build.0 = Release|x64
 		{49F60EB9-E37B-4D4B-98FB-6ED69FB36686}.Release|x86.ActiveCfg = Release|Win32
 		{49F60EB9-E37B-4D4B-98FB-6ED69FB36686}.Release|x86.Build.0 = Release|Win32
+		{7D4D8989-A239-4279-9E26-A58B30FBF708}.Debug|x64.ActiveCfg = Debug|x64
+		{7D4D8989-A239-4279-9E26-A58B30FBF708}.Debug|x64.Build.0 = Debug|x64
+		{7D4D8989-A239-4279-9E26-A58B30FBF708}.Debug|x86.ActiveCfg = Debug|Win32
+		{7D4D8989-A239-4279-9E26-A58B30FBF708}.Debug|x86.Build.0 = Debug|Win32
+		{7D4D8989-A239-4279-9E26-A58B30FBF708}.Release|x64.ActiveCfg = Release|x64
+		{7D4D8989-A239-4279-9E26-A58B30FBF708}.Release|x64.Build.0 = Release|x64
+		{7D4D8989-A239-4279-9E26-A58B30FBF708}.Release|x86.ActiveCfg = Release|Win32
+		{7D4D8989-A239-4279-9E26-A58B30FBF708}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
