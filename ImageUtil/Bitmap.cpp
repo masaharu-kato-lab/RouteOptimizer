@@ -4,7 +4,7 @@
 #include <xutility>
 #include "binary_io.h"
 
-using namespace imgutil;
+using namespace ro::iu;
 
 Bitmap::Bitmap(uint32_t width, uint32_t height) noexcept
 	: width(width), height(height) /* , data(new Color[calcDataSize()]) */

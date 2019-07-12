@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-namespace imgutil {
+namespace ro::iu {
 
 //	Output values as little-endianed binary
 	template <class First, class... Rests>

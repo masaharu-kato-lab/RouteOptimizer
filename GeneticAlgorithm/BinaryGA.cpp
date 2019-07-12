@@ -1,5 +1,5 @@
 ﻿#include "BinaryGA.h"
-using namespace ga;
+using namespace ro::ga;
 
 auto BinaryGA::createIndividual() -> Individual&
 {

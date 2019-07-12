@@ -6,7 +6,7 @@
 #include <functional>
 #include "Bitstring.h"
 
-namespace ga {
+namespace ro::ga {
 
 	//	Binary Genetic Algorithm class
 	class BinaryGA {

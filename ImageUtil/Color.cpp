@@ -1,5 +1,5 @@
 #include "Color.h"
-using namespace imgutil;
+using namespace ro::iu;
 
 Color::Color() noexcept = default;
 

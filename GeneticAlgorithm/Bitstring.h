@@ -1,7 +1,7 @@
 #pragma once
 #include <memory>
 
-namespace ga {
+namespace ro::ga {
 
 	//	Bitstring class
 	class Bitstring {

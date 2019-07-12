@@ -6,7 +6,7 @@
 #include "Position.h"
 #include "Color.h"
    
-namespace imgutil {
+namespace ro::iu {
 
        
 //	Bitmap class

@@ -1,7 +1,7 @@
 #pragma once
 #include <cstdint>
 
-namespace imgutil {
+namespace ro::iu {
 
 	//	FƒNƒ‰ƒX
 	class /*alignas(4)*/ Color {
