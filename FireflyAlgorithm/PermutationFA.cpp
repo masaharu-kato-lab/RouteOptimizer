@@ -1,2 +1,2 @@
 #include "PermutationFA.h"
-using namespace fa;
+using namespace ro::fa;

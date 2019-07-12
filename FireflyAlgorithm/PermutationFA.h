@@ -1,16 +1,19 @@
 #pragma once
 #include <vector>
+#include "../Base/Point.h"
+#include "../Base/PermutationUtility.h"
+#include "../Base/PermutationArray.h"
 
-namespace fa {
+namespace ro::fa {
 
 	class PermutationFA {
 	public:
-		using Permutation = 
+		
 
 
 
 	private:
-
+		PermutationArray<Point*> perms;
 	};
 
 }

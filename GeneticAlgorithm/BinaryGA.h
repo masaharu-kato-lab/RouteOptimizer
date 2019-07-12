@@ -26,7 +26,7 @@ namespace ga {
 		
 		using Population = std::vector<Individual>;
 
-		using IndividualIndex = uint32_t;
+		using IndivIndex = uint32_t;
 
 		using Crossover = std::function<void(const Individual&, const Individual&, Individual&, Individual&)>;
 		using Mutation = std::function<void(Individual&)>;
@@ -49,15 +49,16 @@ namespace ga {
 		void randomize(double probability_of_1 = 0.5);
 
 	//	一点交叉関数
-		void single_point_crossover(IndividualIndex p1, IndividualIndex p2);
+		void single_point_crossover(IndivIndex p1, IndivIndex p2);
 
 	//	二点交叉関数
-		void double_point_crossover(IndividualIndex p1, IndividualIndex p2);
+		void double_point_crossover(IndivIndex p1, IndivIndex p2);
 
 	//	一様交叉関数
-		void uniform_crossover(IndividualIndex i1, IndividualIndex i2);
+		void uniform_crossover(IndivIndex i1, IndivIndex i2);
 
 	//	ブロック交叉関数
+		void block_crossover(IndivIndex i1, IndivIndex i2);
 
 	//	突然変異関数
 		void random_index_mutation(Individual& idv);

@@ -132,7 +132,6 @@
   <ItemGroup>
     <ClInclude Include="BinaryGA.h" />
     <ClInclude Include="Bitstring.h" />
-    <ClInclude Include="Point.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Base\Base.vcxproj">

@@ -24,7 +24,7 @@ void BinaryGA::randomize(double probability_of_1 = 0.5)
 }
 
 //	一点交叉関数
-void BinaryGA::single_point_crossover(IndividualIndex p1, IndividualIndex p2)
+void BinaryGA::single_point_crossover(IndivIndex p1, IndivIndex p2)
 {
 	BitIndex i_border = randomBitIndex(0, bit_length);
 	Individual& c1 = createIndividual();
@@ -36,7 +36,7 @@ void BinaryGA::single_point_crossover(IndividualIndex p1, IndividualIndex p2)
 }
 
 //	二点交叉関数
-void BinaryGA::double_point_crossover(IndividualIndex p1, IndividualIndex p2)
+void BinaryGA::double_point_crossover(IndivIndex p1, IndivIndex p2)
 {
 	BitIndex i_beg = randomBitIndex(0, bit_length - 1);
 	BitIndex i_end = randomBitIndex(i_beg + 1, bit_length);
@@ -48,7 +48,7 @@ void BinaryGA::double_point_crossover(IndividualIndex p1, IndividualIndex p2)
 }
 
 //	一様交叉関数
-void BinaryGA::uniform_crossover(IndividualIndex i1, IndividualIndex i2)
+void BinaryGA::uniform_crossover(IndivIndex i1, IndivIndex i2)
 {
 	const Individual& p1 = population[i1];
 	const Individual& p2 = population[i2];
