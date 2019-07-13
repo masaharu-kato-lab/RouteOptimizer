@@ -1,64 +1,49 @@
 #pragma once
-#include "PermutationValues.h"
+#include "ConstPermutation.h"
+#include "PermutationElements.h"
 #include <memory>
-#include <vector>
 
 namespace ro {
 
-	template <class Type>
-	class Permutation {
-	public:
-		using Index = PermutationValues<Type>::Index;
+//	順列の要素情報を持つ、編集可能な順列クラス
+	class Permutation : public ConstPermutation {
+	public:		
+	//	index 番目の変更可能な値を取得する
+		Element& get(Index index) noexcept;
 
-	protected:
-		std::shared_ptr<PermutationValues<Type>> origin;
-		Type* target;
-		
-	public:
-	//	値を取得する
-		Type get(Index index) const noexcept {
-			return target[index];
-		}
-		
-	//	変更可能な値を取得する
-		Type& get(Index index) noexcept {
-			return target[index];
-		}
+	//	index 番目の変更可能な値を取得する
+		Element& operator [](Index index) noexcept;
+
+	//	順列を構成する要素の数を取得する
+		Index size() const noexcept;
 		
 	//	コンストラクタ（すべて未設定で初期化）
-		Permutation(const std::shared_ptr<PermutationValues<Type>>& origin) noexcept :
-			origin(origin),
-			target(new Type[origin->size()])
-		{
-			for(Index index = 0; index < _Base::size(); ++index) reset(index);
-		}
+		Permutation(const std::shared_ptr<PermutationElements>& origin) noexcept;
 		
 	//	コンストラクタ（既存の配列から初期化）
-		Permutation(const std::shared_ptr<PermutationValues<Type>>& origin, Type* target_ptr) noexcept :
-			origin(origin),
-			target(target_ptr)
-		{}
+		Permutation(const std::shared_ptr<PermutationElements>& origin, Element* target_ptr) noexcept;
+
+	//	デストラクタ
+		~Permutation();
+
+	//	順列としての整合性を確認する
+		bool isValid() const noexcept;
 
 	//	直接（順列としての整合性を確認せずに）値を設定する
-		void set_directly(Index index, Type value)  noexcept {
-			get(index) = value;
-		}
+		void set_directly(Index index, Element value)  noexcept;
 
 	//	index 番目を未設定にする
-		void reset(Index index) noexcept {
-			origin->setDefault(get(index));
-		}
+		void reset(Index index) noexcept;
 
-	//	index 番目が設定されているか返す
-		bool isset(Index index) const {
-			return !origin->isDefault(get(index));
-		}
+	//	すべて未設定にする
+		void reset() noexcept;
 
 	//	index1 と index2 を入れ替える
-		void swap(Index index1, Index index2) {
-			std::swap(get(index1), get(index2));
-		}
+		void swap(Index index1, Index index2);
 
+	protected:
+		std::shared_ptr<PermutationElements> origin;
+		
 	};
 
 }

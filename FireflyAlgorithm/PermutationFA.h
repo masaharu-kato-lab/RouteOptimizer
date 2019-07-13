@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include "../Base/Point.h"
-#include "../Base/PermutationUtility.h"
+#include "../Base/PermutationHelper.h"
 #include "../Base/PermutationArray.h"
 
 namespace ro::fa {
@@ -13,7 +13,7 @@ namespace ro::fa {
 
 
 	private:
-		PermutationArray<Point*> perms;
+		PermutationArray perms;
 	};
 
 }

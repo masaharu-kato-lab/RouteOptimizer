@@ -13,7 +13,7 @@ namespace ro {
 
 	//	íl value Ç™ë∂ç›Ç∑ÇÈÇ©ï‘Ç∑
 		bool exist(Type value) const noexcept {
-			return _Base::count(value);
+			return (bool)_Base::count(value);
 		}
 
 	};
