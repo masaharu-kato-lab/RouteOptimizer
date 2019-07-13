@@ -3,7 +3,7 @@
 using namespace ro;
 
 //	コンストラクタ
-PermutationArray::PermutationArray(std::shared_ptr<PermutationElements> origin, Index n_data) noexcept :
+PermutationArray::PermutationArray(std::shared_ptr<const PermutationElements> origin, Index n_data) noexcept :
 	origin(origin),
 	n_data(n_data),
 	data(new Element[data_size()])
@@ -35,38 +35,30 @@ size_t PermutationArray::data_size() const noexcept {
 	return permutation_size() * n_data;
 }
 
-auto PermutationArray::getConst(Index index) const noexcept -> ConstPermutation {
+RawPermutation PermutationArray::getRaw(Index index) const noexcept {
 	return {getElementPtr(index)};
 }
 
-auto PermutationArray::get(Index index) const noexcept -> ConstPermutation {
-	return getConst(index);
-}
-
-auto PermutationArray::operator [](Index index) const noexcept -> ConstPermutation {
-	return getConst(index);
+//	index 番目の順列オブジェクトを取得
+Permutation PermutationArray::get(Index index) const noexcept {
+	return {origin, getElementPtr(index)};
 }
 
 //	index 番目の順列オブジェクトを取得
-auto PermutationArray::get(Index index) noexcept -> Permutation {
-	return {shared_from_this(), getElementPtr(index)};
-}
-
-//	index 番目の順列オブジェクトを取得
-auto PermutationArray::operator [](Index index) noexcept -> Permutation {
+Permutation PermutationArray::operator [](Index index) const noexcept {
 	return get(index);
 }
 
 //	index 番目の順列オブジェクトを取得
-auto PermutationArray::getHelper(Index index) noexcept -> PermutationHelper {
-	return {shared_from_this(), getElementPtr(index)};
+PermutationHelper PermutationArray::getHelper(Index index) const noexcept {
+	return {origin, getElementPtr(index)};
 }
-		
-//	配列かどうか返す（このクラスでは常にtrue)
-bool PermutationArray::isArray() const noexcept {
-	return true;
-}
+//		
+////	配列かどうか返す（このクラスでは常にtrue)
+//bool PermutationArray::isArray() const noexcept {
+//	return true;
+//}
 
 auto PermutationArray::getElementPtr(Index index) const noexcept -> Element* {
-	return data + _Base::size() * index;
+	return data + permutation_size() * index;
 }

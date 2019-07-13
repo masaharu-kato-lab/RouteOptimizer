@@ -12,4 +12,12 @@ namespace ro {
 //	‡—ñ‚É‚¨‚¯‚é—v‘fŒ^‚ÌŠù’è’l
 	constexpr PermutationElement PERMUTATION_ELEMENT_DEFAULT = 0;
 
+
+	class PermutationElements;
+	class RawPermutation;
+	class Permutation;
+	class PermutationHelper;
+	class PermutationArray;
+
+
 }

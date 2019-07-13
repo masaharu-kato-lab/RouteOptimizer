@@ -1,15 +1,7 @@
 #include "Permutation.h"
+#include "PermutationHelper.h"
+#include <stdexcept>
 using namespace ro;
-
-//	変更可能な値を取得する
-auto Permutation::get(Index index) noexcept -> Element& {
-	return element[index];
-}
-
-//	変更可能な値を取得する
-auto Permutation::operator [](Index index) noexcept -> Element& {
-	return element[index];
-}
 
 //	順列を構成する要素の数を取得する
 auto Permutation::size() const noexcept -> Index {
@@ -17,16 +9,16 @@ auto Permutation::size() const noexcept -> Index {
 }
 		
 //	コンストラクタ（すべて未設定で初期化）
-Permutation::Permutation(const std::shared_ptr<PermutationElements>& origin) noexcept :
-	ConstPermutation(new Element[size()]),
+Permutation::Permutation(const std::shared_ptr<const PermutationElements>& origin) noexcept :
+	RawPermutation(new Element[size()]),
 	origin(origin)
 {
 	reset();
 }
 		
 //	コンストラクタ（既存の配列から初期化）
-Permutation::Permutation(const std::shared_ptr<PermutationElements>& origin, Element* target_ptr) noexcept :
-	ConstPermutation(target_ptr),
+Permutation::Permutation(const std::shared_ptr<const PermutationElements>& origin, Element* target_ptr) noexcept :
+	RawPermutation(target_ptr),
 	origin(origin)
 {}
 
@@ -36,13 +28,9 @@ Permutation::~Permutation() {
 }
 
 //	直接（順列としての整合性を確認せずに）値を設定する
-void Permutation::set_directly(Index index, Element value)  noexcept {
-	get(index) = value;
-}
-
-//	index 番目を未設定にする
-void Permutation::reset(Index index) noexcept {
-	get(index) = PermutationElements::DEFAULT_ELEMENT;
+void Permutation::set_directly(Index index, Element value) {
+	if(index >= size()) throw std::out_of_range("index out of range.");
+	RawPermutation::set_directly(index, value);
 }
 
 //	すべて未設定にする
@@ -50,7 +38,12 @@ void Permutation::reset() noexcept {
 	for(Index index = 0; index < size(); ++index) reset(index);
 }
 
-//	index1 と index2 を入れ替える
-void Permutation::swap(Index index1, Index index2) {
-	std::swap(get(index1), get(index2));
+//	生の順列データを取得する
+RawPermutation Permutation::getRaw() const noexcept {
+	return (RawPermutation)*this;
+}
+
+//	ヘルパーを取得する
+PermutationHelper Permutation::getHelper() const noexcept {
+	return {*this};
 }

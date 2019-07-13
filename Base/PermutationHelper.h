@@ -9,10 +9,10 @@ namespace ro {
 	class PermutationHelper : public Permutation {
 	public:
 	//	コンストラクタ（すべて未設定で初期化）
-		PermutationHelper(const std::shared_ptr<PermutationElements>& origin) noexcept;
+		PermutationHelper(const std::shared_ptr<const PermutationElements>& origin) noexcept;
 		
 	//	コンストラクタ（既存の配列から初期化）
-		PermutationHelper(const std::shared_ptr<PermutationElements>& origin, Element* target_ptr) noexcept;
+		PermutationHelper(const std::shared_ptr<const PermutationElements>& origin, Element* target_ptr) noexcept;
 
 	//	コンストラクタ（順列クラスで初期化）
 		PermutationHelper(const Permutation&) noexcept;
@@ -24,7 +24,7 @@ namespace ro {
 		void set_unused(Index index, Element value);
 
 	//	p と同じ値を持つ場所以外を未設定にする
-		void reset_different_indexes(const ConstPermutation& p);
+		void reset_different_indexes(const RawPermutation& p);
 
 	//	関数 value_by_index の返す要素に従って、未設定の場所を埋める
 		void fill_empties_if_unused(std::function<Element(Index)> value_by_index);
@@ -32,7 +32,7 @@ namespace ro {
 	//	未設定のIndexについて、p1 または p2 のIndexの要素に設定する
 	//	関数 rand が true を返せば p1 の要素、 false を返せば p2 の要素を設定する
 	//	設定する要素が順列中でに使用済みであればスキップする（何もしない）
-		void fill_empties_with_2_permutations(const ConstPermutation& p1, const ConstPermutation& p2, std::function<bool()> rand);
+		void fill_empties_with_2_permutations(const RawPermutation& p1, const RawPermutation& p2, std::function<bool()> rand);
 
 	//	未設定のIndexを未使用の値で埋める（未設定のインデックスをシャッフルして返す関数 arrange_indexes を与える）
 		void fill_empties_with_unused(std::function<std::vector<Index>(const Set<Index>&)> get_arranged_indexes);

@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ConstPermutation.h" />
+    <ClInclude Include="RawPermutation.h" />
     <ClInclude Include="Permutation.h" />
     <ClInclude Include="PermutationArray.h" />
     <ClInclude Include="PermutationHelper.h" />
@@ -137,7 +137,7 @@
     <ClInclude Include="Set.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ConstPermutation.cpp" />
+    <ClCompile Include="RawPermutation.cpp" />
     <ClCompile Include="Permutation.cpp" />
     <ClCompile Include="PermutationArray.cpp" />
     <ClCompile Include="PermutationHelper.cpp" />

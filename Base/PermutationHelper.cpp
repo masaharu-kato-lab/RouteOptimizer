@@ -2,12 +2,12 @@
 using namespace ro;
 
 //	コンストラクタ（すべて未設定で初期化）
-PermutationHelper::PermutationHelper(const std::shared_ptr<PermutationElements>& origin) noexcept
+PermutationHelper::PermutationHelper(const std::shared_ptr<const PermutationElements>& origin) noexcept
 	: PermutationHelper(Permutation(origin))
 {}
 
 //	コンストラクタ（既存の配列から初期化）
-PermutationHelper::PermutationHelper(const std::shared_ptr<PermutationElements>& origin, Element* target_ptr) noexcept
+PermutationHelper::PermutationHelper(const std::shared_ptr<const PermutationElements>& origin, Element* target_ptr) noexcept
 	: PermutationHelper(Permutation(origin, target_ptr))
 {}
 		
@@ -32,8 +32,8 @@ void PermutationHelper::set_unused(Index index, Element value) {
 }
 
 //	p と同じ値を持つ場所以外を未設定にする
-void PermutationHelper::reset_different_indexes(const ConstPermutation& p) {
-	for(Index index = 0; index < _Base::size(); ++index) {
+void PermutationHelper::reset_different_indexes(const RawPermutation& p) {
+	for(Index index = 0; index < size(); ++index) {
 		if(get(index) != p[index]) reset(index);
 	}
 }
@@ -45,7 +45,7 @@ void PermutationHelper::fill_empties_if_unused(std::function<Element(Index)> val
 	}
 }
 
-void PermutationHelper::fill_empties_with_2_permutations(const ConstPermutation& p1, const ConstPermutation& p2, std::function<bool()> rand) {
+void PermutationHelper::fill_empties_with_2_permutations(const RawPermutation& p1, const RawPermutation& p2, std::function<bool()> rand) {
 	return fill_empties_if_unused([&](Index index) -> Element {
 		return rand() ? p1[index] : p2[index];
 	});

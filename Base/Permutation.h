@@ -1,48 +1,45 @@
 #pragma once
-#include "ConstPermutation.h"
+#include "RawPermutation.h"
 #include "PermutationElements.h"
 #include <memory>
 
 namespace ro {
 
 //	順列の要素情報を持つ、編集可能な順列クラス
-	class Permutation : public ConstPermutation {
-	public:		
-	//	index 番目の変更可能な値を取得する
-		Element& get(Index index) noexcept;
-
-	//	index 番目の変更可能な値を取得する
-		Element& operator [](Index index) noexcept;
-
+	class Permutation : public RawPermutation {
+	public:
 	//	順列を構成する要素の数を取得する
 		Index size() const noexcept;
 		
 	//	コンストラクタ（すべて未設定で初期化）
-		Permutation(const std::shared_ptr<PermutationElements>& origin) noexcept;
+		Permutation(const std::shared_ptr<const PermutationElements>& origin) noexcept;
 		
 	//	コンストラクタ（既存の配列から初期化）
-		Permutation(const std::shared_ptr<PermutationElements>& origin, Element* target_ptr) noexcept;
+		Permutation(const std::shared_ptr<const PermutationElements>& origin, Element* target_ptr) noexcept;
 
-	//	デストラクタ
 		~Permutation();
 
-	//	順列としての整合性を確認する
-		bool isValid() const noexcept;
-
-	//	直接（順列としての整合性を確認せずに）値を設定する
-		void set_directly(Index index, Element value)  noexcept;
-
-	//	index 番目を未設定にする
-		void reset(Index index) noexcept;
+		using RawPermutation::reset;
 
 	//	すべて未設定にする
 		void reset() noexcept;
 
-	//	index1 と index2 を入れ替える
-		void swap(Index index1, Index index2);
+	//	直接（順列としての整合性を確認せずに）値を設定する
+	//	index が範囲外の場合は例外を投げる
+		void set_directly(Index index, Element value);
+		
+	//	順列としての整合性を確認する
+		bool isValid() const noexcept;
+
+
+	//	生の順列データを取得する
+		RawPermutation getRaw() const noexcept;
+
+	//	ヘルパーを取得する
+		PermutationHelper getHelper() const noexcept;
 
 	protected:
-		std::shared_ptr<PermutationElements> origin;
+		std::shared_ptr<const PermutationElements> origin;
 		
 	};
 
