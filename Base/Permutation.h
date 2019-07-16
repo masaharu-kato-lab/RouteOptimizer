@@ -5,7 +5,7 @@
 
 namespace ro {
 
-//	順列の要素情報を持つ、編集可能な順列クラス
+//	順列の要素情報を持つ順列クラス
 	class Permutation : public RawPermutation {
 	public:
 	//	順列を構成する要素の数を取得する

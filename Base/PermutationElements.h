@@ -5,6 +5,7 @@
 
 namespace ro {
 
+//	順列に含まれる要素を保持するクラス
 	class PermutationElements : public Set<PermutationElement> {
 	protected:
 		using _Base = Set<PermutationElement>;	//	基底型（要素の集合）

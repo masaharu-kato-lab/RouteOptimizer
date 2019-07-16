@@ -19,6 +19,7 @@ PermutationHelper::PermutationHelper(const Permutation& p) noexcept :
 {}
 
 //	もし index 番目が未設定で value が未使用なら、index 番目に value を設定する
+//	設定された場合 true, されなかった場合 false を返す
 bool PermutationHelper::set_if_unused(Index index, Element value) {
 	if(isset(index) || !unused_elements.exist(value)) return false; 
 	get(index) = value;
@@ -45,6 +46,7 @@ void PermutationHelper::fill_empties_if_unused(std::function<Element(Index)> val
 	}
 }
 
+//	未設定のIndexについて、p1 または p2 のIndexの要素に設定する
 void PermutationHelper::fill_empties_with_2_permutations(const RawPermutation& p1, const RawPermutation& p2, std::function<bool()> rand) {
 	return fill_empties_if_unused([&](Index index) -> Element {
 		return rand() ? p1[index] : p2[index];

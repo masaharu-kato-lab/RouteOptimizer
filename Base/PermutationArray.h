@@ -6,7 +6,7 @@
 
 namespace ro {
 
-//	順列に使用する値の集合を表現し、順列の配列を保持するクラス
+//	順列の配列クラス
 	class PermutationArray : /* public PermutationElements, */ public std::enable_shared_from_this<PermutationArray> {
 	public:	
 		using Index = uint_fast32_t;
@@ -29,10 +29,12 @@ namespace ro {
 
 		PermutationHelper getHelper(Index index) const noexcept;
 
+
+
 		//	bool isArray() const noexcept override;
 
 	private:
-		std::shared_ptr<const PermutationElements> origin;	//	要素データ
+		std::shared_ptr<const PermutationElements> origin;	//	要素集合
 		Index n_data;	//	データ数
 		Element* data;	//	順列データ
 

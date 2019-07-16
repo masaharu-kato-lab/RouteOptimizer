@@ -10,32 +10,30 @@ namespace ro {
 		using Element = PermutationElement;
 		using Index = PermutationIndex;
 
-	//	コンストラクタ
 		RawPermutation(Element*) noexcept;
 
-
-	//	index 番目の値を取得する
+	//	index の要素を取得する
 		Element get(Index index) const noexcept;
 
-	//	index 番目の値を取得
+	//	index の要素を取得
 		Element operator [](Index index) const noexcept;
 		
-	//	index 番目の変更可能な値を取得する
+	//	index の変更可能な要素を取得する
 		Element& get(Index index) noexcept;
 
-	//	index 番目の変更可能な値を取得する
+	//	index の変更可能な要素を取得する
 		Element& operator [](Index index) noexcept;
 
-	//	index 番目が設定されているか返す
+	//	index が設定されているか返す
 		bool isset(Index index) const;
 
-	//	直接（順列としての整合性を確認せずに）値を設定する
+	//	直接（順列としての整合性を確認せずに）要素を設定する
 		void set_directly(Index index, Element value)  noexcept;
 
-	//	index 番目を未設定にする
+	//	index を未設定にする
 		void reset(Index index) noexcept;
 
-	//	index1 と index2 を入れ替える
+	//	index1 と index2 の要素を入れ替える
 		void swap(Index index1, Index index2);
 
 	protected:

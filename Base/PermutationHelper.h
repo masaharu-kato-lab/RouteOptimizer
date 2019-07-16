@@ -6,6 +6,7 @@
 
 namespace ro {
 
+//	複雑な操作を行うことができる順列クラス
 	class PermutationHelper : public Permutation {
 	public:
 	//	コンストラクタ（すべて未設定で初期化）

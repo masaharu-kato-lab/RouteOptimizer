@@ -8,13 +8,13 @@ auto Permutation::size() const noexcept -> Index {
 	return origin->size();
 }
 		
-//	コンストラクタ（すべて未設定で初期化）
-Permutation::Permutation(const std::shared_ptr<const PermutationElements>& origin) noexcept :
-	RawPermutation(new Element[size()]),
-	origin(origin)
-{
-	reset();
-}
+////	コンストラクタ（すべて未設定で初期化）
+//Permutation::Permutation(const std::shared_ptr<const PermutationElements>& origin) noexcept :
+//	RawPermutation(new Element[size()]),
+//	origin(origin)
+//{
+//	reset();
+//}
 		
 //	コンストラクタ（既存の配列から初期化）
 Permutation::Permutation(const std::shared_ptr<const PermutationElements>& origin, Element* target_ptr) noexcept :
