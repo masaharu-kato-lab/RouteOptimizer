@@ -1,18 +1,19 @@
 #pragma once
-#include "PermutationElements.h"
+#include "Elements.h"
 #include "Permutation.h"
-#include "PermutationHelper.h"
+#include "ElementedPermutation.h"
 #include <memory>
+#include <functional>
 
 namespace ro {
 
 //	順列の配列クラス
-	class PermutationArray : /* public PermutationElements, */ public std::enable_shared_from_this<PermutationArray> {
+	class PermutationArray {
 	public:	
 		using Index = uint_fast32_t;
 		using Element = PermutationElement;
 
-		PermutationArray(std::shared_ptr<const PermutationElements> origin, Index n_data) noexcept;
+		PermutationArray(std::shared_ptr<const Elements> elements, Index n_data) noexcept;
 		PermutationArray(const PermutationArray&) noexcept;
 		~PermutationArray();
 
@@ -22,19 +23,22 @@ namespace ro {
 	//	1順列のサイズを取得
 		PermutationIndex permutation_size() const noexcept;
 
-		RawPermutation getRaw(Index index) const noexcept;	
-			
-		Permutation get(Index index) const noexcept;
-		Permutation operator [](Index index) const noexcept;
+		const Element* getRaw(Index index) const noexcept;				//	生データを取得
+		Permutation get(Index index) const noexcept;					//	順列オブジェクトを取得
+		Permutation operator [](Index index) const noexcept;			//	順列オブジェクトを取得
+		ElementedPermutation getElemented(Index index) const noexcept;	//	要素付き順列オブジェクトを取得
 
-		PermutationHelper getHelper(Index index) const noexcept;
+	//	順列を設定
+		void set(Index index, const Permutation perm) noexcept;
 
+	//	すべての順列を変更する
+		void set_all(std::function<Permutation(Index)> generate_perm) noexcept;
 
-
-		//	bool isArray() const noexcept override;
+	//	順列が変更されたときに呼ばれる関数（既定では何もしない）
+		virtual void onchange(Index index) noexcept;
 
 	private:
-		std::shared_ptr<const PermutationElements> origin;	//	要素集合
+		std::shared_ptr<const Elements> elements;	//	要素集合
 		Index n_data;	//	データ数
 		Element* data;	//	順列データ
 

@@ -3,14 +3,14 @@
 using namespace ro;
 
 //	コンストラクタ
-PermutationArray::PermutationArray(std::shared_ptr<const PermutationElements> origin, Index n_data) noexcept :
-	origin(origin),
+PermutationArray::PermutationArray(std::shared_ptr<const Elements> elements, Index n_data) noexcept :
+	elements(elements),
 	n_data(n_data),
 	data(new Element[data_size()])
 {}
 
 PermutationArray::PermutationArray(const PermutationArray& self) noexcept : 
-	origin(origin),
+	elements(self.elements),
 	n_data(self.n_data),
 	data(new Element[data_size()])
 {
@@ -28,20 +28,20 @@ auto PermutationArray::size() const noexcept -> Index {
 }
 
 auto PermutationArray::permutation_size() const noexcept -> PermutationIndex {
-	return origin->size();
+	return elements->size();
 }
 
 size_t PermutationArray::data_size() const noexcept {
 	return permutation_size() * n_data;
 }
 
-RawPermutation PermutationArray::getRaw(Index index) const noexcept {
-	return {getElementPtr(index)};
+auto PermutationArray::getRaw(Index index) const noexcept -> const Element* {
+	return getElementPtr(index);
 }
 
 //	index 番目の順列オブジェクトを取得
 Permutation PermutationArray::get(Index index) const noexcept {
-	return {origin, getElementPtr(index)};
+	return {getElementPtr(index), permutation_size()};
 }
 
 //	index 番目の順列オブジェクトを取得
@@ -49,16 +49,21 @@ Permutation PermutationArray::operator [](Index index) const noexcept {
 	return get(index);
 }
 
-//	index 番目の順列オブジェクトを取得
-PermutationHelper PermutationArray::getHelper(Index index) const noexcept {
-	return {origin, getElementPtr(index)};
+//	index 番目の要素付き順列オブジェクトを取得
+ElementedPermutation PermutationArray::getElemented(Index index) const noexcept {
+	return {*elements, getElementPtr(index)};
 }
-//		
-////	配列かどうか返す（このクラスでは常にtrue)
-//bool PermutationArray::isArray() const noexcept {
-//	return true;
-//}
 
 auto PermutationArray::getElementPtr(Index index) const noexcept -> Element* {
 	return data + permutation_size() * index;
 }
+
+void PermutationArray::set(Index index, const Permutation perm) noexcept {
+	std::copy(perm.begin(), perm.begin() + permutation_size(), data + index);
+}
+
+void PermutationArray::set_all(std::function<Permutation(Index)> generate_perm) noexcept {
+	for(Index i = 0; i < n_data; ++i) set(i, generate_perm(i));
+}
+
+void PermutationArray::onchange(Index index) noexcept {}

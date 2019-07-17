@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{49F60EB9-E37B-4D4B-98FB-6ED69FB36686}</ProjectGuid>
-    <RootNamespace>FireflyAlgorithm</RootNamespace>
+    <ProjectGuid>{9A5B9534-8F92-482F-BA27-F51AA7BAFEEB}</ProjectGuid>
+    <RootNamespace>PathEvaluator</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,18 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="PermutationFA.h" />
-    <ClInclude Include="PermutationIntensityArray.h" />
-    <ClInclude Include="types.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="PermutationFA.cpp" />
-    <ClCompile Include="PermutationIntensityArray.cpp" />
+    <ClInclude Include="PathEvaluator.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Base\Base.vcxproj">
       <Project>{7d4d8989-a239-4279-9e26-a58b30fbf708}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="PathEvaluator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,8 +2,8 @@
 #include <vector>
 #include <random> 
 #include <functional>
+#include "types.h"
 #include "../Base/Point.h"
-#include "../Base/PermutationHelper.h"
 #include "../Base/PermutationArray.h"
 
 namespace ro::fa {
@@ -12,8 +12,6 @@ namespace ro::fa {
 	public:
 		using Element = PermutationElement;
 		using PermIndex = PermutationArray::Index;
-		using Intensity = double;
-		using IntensityFunction = std::function<Intensity(Permutation)>;
 
 		struct Options {
 			PermIndex n_perms;
@@ -26,7 +24,7 @@ namespace ro::fa {
 		};
 
 
-		PermutationFA(std::shared_ptr<const PermutationElements> elements, const Options& opts) noexcept;
+		PermutationFA(std::shared_ptr<const Elements> elements, const Options& opts) noexcept;
 
 	//	‰Šú‰ğ‚ğ¶¬‚·‚é
 		void generate() noexcept;

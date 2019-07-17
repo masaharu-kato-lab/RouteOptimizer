@@ -1,46 +1,43 @@
 #pragma once
-#include "RawPermutation.h"
-#include "PermutationElements.h"
-#include <memory>
+#include "PermutationTypes.h"
+#include <vector>
 
 namespace ro {
 
-//	順列の要素情報を持つ順列クラス
-	class Permutation : public RawPermutation {
+//	生の順列データを保持するクラス
+	class Permutation {
 	public:
-	//	順列を構成する要素の数を取得する
-		Index size() const noexcept;
+		using Element = PermutationElement;
+		using Index = PermutationIndex;
+	
+		Permutation(Index size) noexcept;	//	コンストラクタ（すべて未設定で初期化）
+		Permutation(const Element* _data, Index size) noexcept;		//	コンストラクタ（既存の順列データから初期化）
+		Permutation(const Permutation&) noexcept;		//	コピーコンストラクタ
+		~Permutation() noexcept;		//	デストラクタ
 		
-	//	コンストラクタ（すべて未設定で初期化）
-		Permutation(const std::shared_ptr<const PermutationElements>& origin) noexcept;
+		Index size() const noexcept;		//	順列を構成する要素の数を取得する
+		Element  get        (Index index) const noexcept;	//	index の要素を取得する
+		Element  operator [](Index index) const noexcept;	//	index の要素を取得
+		Element& get        (Index index) noexcept;			//	index の変更可能な要素を取得する
+		Element& operator [](Index index) noexcept;			//	index の変更可能な要素を取得する
+		Element*       begin() noexcept;		//	開始ポインタを取得する
+		const Element* begin() const noexcept;	//	開始constポインタを取得する
+		Element*       end  () noexcept;		//	終了ポインタを取得する
+		const Element* end  () const noexcept;	//	終了constポインタを取得する
+
+		bool isset(Index index) const;		//	index が設定されているか返す
+		void reset(Index index) noexcept;		//	index を未設定にする
+		void reset() noexcept;		//	すべて未設定にする
+		void set_directly(Index index, Element value)  noexcept;	//	直接（順列としての整合性を確認せずに）要素を設定する
+		void swap(Index index1, Index index2);		//	index1 と index2 の要素を入れ替える
 		
-	//	コンストラクタ（既存の配列から初期化）
-		Permutation(const std::shared_ptr<const PermutationElements>& origin, Element* target_ptr) noexcept;
+		bool is_valid(const Elements& elements) const noexcept;	//	順列としての整合性を確認する
 
-		~Permutation();
-
-		using RawPermutation::reset;
-
-	//	すべて未設定にする
-		void reset() noexcept;
-
-	//	直接（順列としての整合性を確認せずに）値を設定する
-	//	index が範囲外の場合は例外を投げる
-		void set_directly(Index index, Element value);
-		
-	//	順列としての整合性を確認する
-		bool isValid() const noexcept;
-
-
-	//	生の順列データを取得する
-		RawPermutation getRaw() const noexcept;
-
-	//	ヘルパーを取得する
-		PermutationHelper getHelper() const noexcept;
+		operator const Element*() const noexcept;	//	生データを取得する
 
 	protected:
-		std::shared_ptr<const PermutationElements> origin;
-		
+		Index data_size;
+		Element* data;
 	};
 
 }

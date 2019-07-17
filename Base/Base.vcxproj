@@ -127,21 +127,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="RawPermutation.h" />
     <ClInclude Include="Permutation.h" />
     <ClInclude Include="PermutationArray.h" />
-    <ClInclude Include="PermutationHelper.h" />
+    <ClInclude Include="ElementedPermutation.h" />
     <ClInclude Include="PermutationTypes.h" />
-    <ClInclude Include="PermutationElements.h" />
+    <ClInclude Include="Elements.h" />
     <ClInclude Include="Point.h" />
     <ClInclude Include="Set.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="RawPermutation.cpp" />
     <ClCompile Include="Permutation.cpp" />
     <ClCompile Include="PermutationArray.cpp" />
-    <ClCompile Include="PermutationHelper.cpp" />
-    <ClCompile Include="PermutationElements.cpp" />
+    <ClCompile Include="ElementedPermutation.cpp" />
+    <ClCompile Include="Elements.cpp" />
     <ClCompile Include="Point.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

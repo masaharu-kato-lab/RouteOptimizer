@@ -13,11 +13,9 @@ namespace ro {
 	constexpr PermutationElement PERMUTATION_ELEMENT_DEFAULT = 0;
 
 
-	class PermutationElements;
-	class RawPermutation;
+	class Elements;
 	class Permutation;
-	class PermutationHelper;
+	class ElementedPermutation;
 	class PermutationArray;
-
 
 }

@@ -139,6 +139,9 @@
     <ProjectReference Include="..\ImageUtil\ImageUtil.vcxproj">
       <Project>{bbf60fa1-3e16-47c8-9cca-c9894ccb34fb}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\PathEvaluator\PathEvaluator.vcxproj">
+      <Project>{9a5b9534-8f92-482f-ba27-f51aa7bafeeb}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\PointGenerator\PointGenerator.vcxproj">
       <Project>{c191700f-f5df-4b41-bfb2-b26b64fe4a14}</Project>
     </ProjectReference>
