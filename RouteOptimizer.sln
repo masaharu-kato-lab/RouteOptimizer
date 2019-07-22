@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PointGenerator", "PointGene
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PathEvaluator", "PathEvaluator\PathEvaluator.vcxproj", "{9A5B9534-8F92-482F-BA27-F51AA7BAFEEB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InputGenerator", "InputGenerator\InputGenerator.vcxproj", "{4E641152-4B57-4247-A3B6-A972D812136D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -81,6 +83,14 @@ Global
 		{9A5B9534-8F92-482F-BA27-F51AA7BAFEEB}.Release|x64.Build.0 = Release|x64
 		{9A5B9534-8F92-482F-BA27-F51AA7BAFEEB}.Release|x86.ActiveCfg = Release|Win32
 		{9A5B9534-8F92-482F-BA27-F51AA7BAFEEB}.Release|x86.Build.0 = Release|Win32
+		{4E641152-4B57-4247-A3B6-A972D812136D}.Debug|x64.ActiveCfg = Debug|x64
+		{4E641152-4B57-4247-A3B6-A972D812136D}.Debug|x64.Build.0 = Debug|x64
+		{4E641152-4B57-4247-A3B6-A972D812136D}.Debug|x86.ActiveCfg = Debug|Win32
+		{4E641152-4B57-4247-A3B6-A972D812136D}.Debug|x86.Build.0 = Debug|Win32
+		{4E641152-4B57-4247-A3B6-A972D812136D}.Release|x64.ActiveCfg = Release|x64
+		{4E641152-4B57-4247-A3B6-A972D812136D}.Release|x64.Build.0 = Release|x64
+		{4E641152-4B57-4247-A3B6-A972D812136D}.Release|x86.ActiveCfg = Release|Win32
+		{4E641152-4B57-4247-A3B6-A972D812136D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
