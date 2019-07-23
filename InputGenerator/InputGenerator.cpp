@@ -1,8 +1,15 @@
-#include "generate.h"
+#include "InputGenerator.h"
 #include <xutility>
 
-InputGenerator::InputGenerator(std::ostream& os, unsigned int seed, size_t sx, size_t sy) :
-	os(os), mt(seed), sx(sx), sy(sy), data(new DataType[sy * sx])
+using namespace ro::ig;
+
+InputGenerator::InputGenerator(unsigned int seed, size_t sx, size_t sy) :
+	mt(seed),
+	sx(sx),
+	sy(sy),
+	data(new DataType[sy * sx]),
+	rand_sx(1, sx - 2),
+	rand_sy(1, sy - 2)
 {}
 
 InputGenerator::~InputGenerator(){
@@ -14,18 +21,15 @@ void InputGenerator::fill(DataType val) noexcept {
 }
 
 auto InputGenerator::get(size_t x, size_t y) const noexcept -> DataType {
-	return data[y * sx + x];
+	return *getPtr(x, y);
 }
 
 void InputGenerator::set(size_t x, size_t y, DataType val) noexcept {
-	data[y * sx + x] = val;
+	*getPtr(x, y) = val;
 }
 
-void InputGenerator::generate(size_t sx, size_t sy, size_t max_area, size_t n_rects) {
+void InputGenerator::generate(size_t max_area, size_t n_rects) {
 	fill('#');
-
-	std::uniform_int_distribution<size_t> rand_sx(1, sx - 2);
-	std::uniform_int_distribution<size_t> rand_sy(1, sy - 2);
 
 	for(size_t i = 0; i < n_rects; ++i) {
 
@@ -51,11 +55,19 @@ void InputGenerator::generate(size_t sx, size_t sy, size_t max_area, size_t n_re
 
 void InputGenerator::fill(size_t bx, size_t by, size_t ex, size_t ey, DataType val) noexcept {
 	for(size_t iy = by; iy <= ey; ++iy) {
-		std::fill(data + iy * sx + bx, data + iy * sx + ex, val);
+		std::fill(getPtr(bx, iy), getPtr(ex, iy) + 1, val);
 	}
 }
 
-void InputGenerator::output() const noexcept {
+auto InputGenerator::getPtr(size_t x, size_t y) const noexcept -> const DataType* {
+	return data + (y * sx + x);
+}
+
+auto InputGenerator::getPtr(size_t x, size_t y) noexcept -> DataType* {
+	return data + (y * sx + x);
+}
+
+void InputGenerator::output(std::ostream& os) const noexcept {
 	for(size_t iy = 0; iy < sy; ++iy) {
 		for(size_t ix = 0; ix < sx; ++ix) {
 			os << get(ix, iy);
