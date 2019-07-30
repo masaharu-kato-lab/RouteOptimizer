@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="TwoNodesValues.h" />
     <ClInclude Include="PathEvaluator.h" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +136,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="generate_graph.cpp" />
     <ClCompile Include="PathEvaluator.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

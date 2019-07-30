@@ -18,9 +18,15 @@
     <ClInclude Include="PathEvaluator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="TwoNodesValues.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="PathEvaluator.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="generate_graph.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
